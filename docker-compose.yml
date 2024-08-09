@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    volumes:
+      - .:/app
+    command: python model_inference.py
+    networks:
+      - app-network
+    ports:
+      - "5000:5000" # Expose Python service on port 5000
+
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+    ports:
+      - "3000:3000" # Expose Node.js service on port 3000
+    depends_on:
+      - python-app
+
+networks:
+  app-network:
+    driver: bridge

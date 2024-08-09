@@ -50,6 +50,14 @@ cd conversational-api
 ```bash
   node server.js
 ```
+  - Start Docker on your local machine
+  - Run below commands to build and run the containers
+
+```bash
+  docker-compose build
+  docker-compose up
+```
+
 
 ### 5. API Endpoints
 
